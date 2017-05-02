@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Localhost.Apis.Gallery.0_1</id>
+        <version>1.6.0.0-beta</version>
+        <title>Localhost.Apis.Gallery.0_1 Client Library</title>
+        <authors>localhost</authors>
+        <owners></owners>
+        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+        <projectUrl>https://code.google.com/p/google-api-dotnet-client/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>localhost APIs Client Library for working with Gallery 0.1.</description>
+        <tags>localhost</tags>
+        <dependencies>
+            <group>
+                <dependency id="Google.Apis" version="1.6.0-beta" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Localhost.Apis.Gallery.0_1.dll" target="lib\portable-net4+sl4+wp71+win8\Localhost.Apis.Gallery.0_1.dll" />
+        <file src="bin\Release\Localhost.Apis.Gallery.0_1.pdb" target="lib\portable-net4+sl4+wp71+win8\Localhost.Apis.Gallery.0_1.pdb" />
+        <file src="bin\Release\Localhost.Apis.Gallery.0_1.xml" target="lib\portable-net4+sl4+wp71+win8\Localhost.Apis.Gallery.0_1.xml" />
+    </files>
+</package>
