@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
 // the License. You may obtain a copy of the License at
 //
@@ -17,7 +18,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localhost.Apis.Gallery.0_1.Data
+namespace Localhost.Apis.Gallery.v0_1.Data
 {    
 
     public class CreateItemRequest : Google.Apis.Requests.IDirectResponseSchema
@@ -94,6 +95,9 @@ namespace Localhost.Apis.Gallery.0_1.Data
 
     public class ItemSearchRequest : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("cutoffDate")]
+        public virtual string CutoffDate { get; set; } 
+
         [Newtonsoft.Json.JsonPropertyAttribute("page")]
         public virtual System.Nullable<int> Page { get; set; } 
 
@@ -249,13 +253,13 @@ namespace Localhost.Apis.Gallery.0_1.Data
     }
 }
 
-namespace Localhost.Apis.Gallery.0_1
+namespace Localhost.Apis.Gallery.v0_1
 {
     /// <summary>The Gallery Service.</summary>
     public class GalleryService : Google.Apis.Services.BaseClientService
     {
         /// <summary>The API version.</summary>
-        public const string Version = "0.1";
+        public const string Version = "v0.1";
 
         /// <summary>The discovery version used to generate this service.</summary>
         public static Google.Apis.Discovery.DiscoveryVersion DiscoveryVersionUsed =
@@ -292,13 +296,13 @@ namespace Localhost.Apis.Gallery.0_1
         /// <summary>Gets the service base URI.</summary>
         public override string BaseUri
         {
-            get { return "http://localhost:3278/api/gallery/0.1/"; }
+            get { return "http://localhost:3278/api/gallery/v0.1/"; }
         }
 
         /// <summary>Gets the service base path.</summary>
         public override string BasePath
         {
-            get { return "api/gallery/0.1/"; }
+            get { return "api/gallery/v0.1/"; }
         }
 
 
@@ -381,16 +385,16 @@ namespace Localhost.Apis.Gallery.0_1
 
 
         /// <param name="body">The body of the request.</param>
-        public virtual CreateItemRequest CreateItem(Localhost.Apis.Gallery.0_1.Data.CreateItemRequest body)
+        public virtual CreateItemRequest CreateItem(Localhost.Apis.Gallery.v0_1.Data.CreateItemRequest body)
         {
             return new CreateItemRequest(service, body);
         }
 
 
-        public class CreateItemRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class CreateItemRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new CreateItem request.</summary>
-            public CreateItemRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.CreateItemRequest body)
+            public CreateItemRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.CreateItemRequest body)
                 : base(service)
             {
                 Body = body;
@@ -400,7 +404,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.CreateItemRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.CreateItemRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -500,7 +504,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.Item>
+        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.Item>
         {
             /// <summary>Constructs a new GetById request.</summary>
             public GetByIdRequest(Google.Apis.Services.IClientService service, string id)
@@ -560,7 +564,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetTagsByItemIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.ListOfTag>
+        public class GetTagsByItemIdRequest : GalleryBaseServiceRequest<List<Data.Tag>>
         {
             /// <summary>Constructs a new GetTagsByItemId request.</summary>
             public GetTagsByItemIdRequest(Google.Apis.Services.IClientService service, string id)
@@ -619,7 +623,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetVisibleIdsRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.PaginatedResponse>
+        public class GetVisibleIdsRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.PaginatedResponse>
         {
             /// <summary>Constructs a new GetVisibleIds request.</summary>
             public GetVisibleIdsRequest(Google.Apis.Services.IClientService service)
@@ -636,6 +640,10 @@ namespace Localhost.Apis.Gallery.0_1
             /// <summary>Query parameter: 'perPage'.</summary>
             [Google.Apis.Util.RequestParameterAttribute("perPage", Google.Apis.Util.RequestParameterType.Query)]
             public virtual System.Nullable<int> PerPage { get; set; }
+
+            /// <summary>Query parameter: 'cutoffDate'.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("cutoffDate", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string CutoffDate { get; set; }
 
 
             ///<summary>Gets the method name.</summary>
@@ -679,6 +687,15 @@ namespace Localhost.Apis.Gallery.0_1
                         DefaultValue = null,
                         Pattern = null,
                     });
+                RequestParameters.Add(
+                    "cutoffDate", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "cutoffDate",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
             }
 
         }
@@ -687,7 +704,7 @@ namespace Localhost.Apis.Gallery.0_1
         /// associated with [sourceItemId]</summary>
         /// <param name="body">The body of the request.</param>
         /// <param name="targetItemId">Path parameter: 'targetItemId'.</param>
-        public virtual MergeItemsRequest MergeItems(Localhost.Apis.Gallery.0_1.Data.IdRequest body, string targetItemId)
+        public virtual MergeItemsRequest MergeItems(Localhost.Apis.Gallery.v0_1.Data.IdRequest body, string targetItemId)
         {
             return new MergeItemsRequest(service, body, targetItemId);
         }
@@ -697,7 +714,7 @@ namespace Localhost.Apis.Gallery.0_1
         public class MergeItemsRequest : GalleryBaseServiceRequest<string>
         {
             /// <summary>Constructs a new MergeItems request.</summary>
-            public MergeItemsRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.IdRequest body, string targetItemId)
+            public MergeItemsRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.IdRequest body, string targetItemId)
                 : base(service)
             {
                 TargetItemId = targetItemId;
@@ -712,7 +729,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.IdRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.IdRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -755,16 +772,16 @@ namespace Localhost.Apis.Gallery.0_1
 
 
         /// <param name="body">The body of the request.</param>
-        public virtual SearchVisibleRequest SearchVisible(Localhost.Apis.Gallery.0_1.Data.ItemSearchRequest body)
+        public virtual SearchVisibleRequest SearchVisible(Localhost.Apis.Gallery.v0_1.Data.ItemSearchRequest body)
         {
             return new SearchVisibleRequest(service, body);
         }
 
 
-        public class SearchVisibleRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.PaginatedResponse>
+        public class SearchVisibleRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.PaginatedResponse>
         {
             /// <summary>Constructs a new SearchVisible request.</summary>
-            public SearchVisibleRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.ItemSearchRequest body)
+            public SearchVisibleRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.ItemSearchRequest body)
                 : base(service)
             {
                 Body = body;
@@ -774,7 +791,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.ItemSearchRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.ItemSearchRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -809,16 +826,16 @@ namespace Localhost.Apis.Gallery.0_1
 
         /// <param name="body">The body of the request.</param>
         /// <param name="id">Path parameter: 'id'.</param>
-        public virtual UpdateItemRequest UpdateItem(Localhost.Apis.Gallery.0_1.Data.UpdateItemRequest body, string id)
+        public virtual UpdateItemRequest UpdateItem(Localhost.Apis.Gallery.v0_1.Data.UpdateItemRequest body, string id)
         {
             return new UpdateItemRequest(service, body, id);
         }
 
 
-        public class UpdateItemRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class UpdateItemRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new UpdateItem request.</summary>
-            public UpdateItemRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.UpdateItemRequest body, string id)
+            public UpdateItemRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.UpdateItemRequest body, string id)
                 : base(service)
             {
                 Id = id;
@@ -833,7 +850,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.UpdateItemRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.UpdateItemRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -877,7 +894,7 @@ namespace Localhost.Apis.Gallery.0_1
 
         /// <param name="body">The body of the request.</param>
         /// <param name="id">Path parameter: 'id'.</param>
-        public virtual UpdateTagsForItemIdRequest UpdateTagsForItemId(Localhost.Apis.Gallery.0_1.Data.ListOfTag body, string id)
+        public virtual UpdateTagsForItemIdRequest UpdateTagsForItemId(List<Data.Tag> body, string id)
         {
             return new UpdateTagsForItemIdRequest(service, body, id);
         }
@@ -886,7 +903,7 @@ namespace Localhost.Apis.Gallery.0_1
         public class UpdateTagsForItemIdRequest : GalleryBaseServiceRequest<string>
         {
             /// <summary>Constructs a new UpdateTagsForItemId request.</summary>
-            public UpdateTagsForItemIdRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.ListOfTag body, string id)
+            public UpdateTagsForItemIdRequest(Google.Apis.Services.IClientService service, List<Data.Tag> body, string id)
                 : base(service)
             {
                 Id = id;
@@ -901,7 +918,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.ListOfTag Body { get; set; }
+            List<Data.Tag> Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -961,16 +978,16 @@ namespace Localhost.Apis.Gallery.0_1
 
 
         /// <param name="body">The body of the request.</param>
-        public virtual ApplyRequest Apply(Localhost.Apis.Gallery.0_1.Data.SetupRequest body)
+        public virtual ApplyRequest Apply(Localhost.Apis.Gallery.v0_1.Data.SetupRequest body)
         {
             return new ApplyRequest(service, body);
         }
 
 
-        public class ApplyRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.SetupResponse>
+        public class ApplyRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.SetupResponse>
         {
             /// <summary>Constructs a new Apply request.</summary>
-            public ApplyRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.SetupRequest body)
+            public ApplyRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.SetupRequest body)
                 : base(service)
             {
                 Body = body;
@@ -980,7 +997,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.SetupRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.SetupRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -1019,7 +1036,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.SetupResponse>
+        public class GetRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.SetupResponse>
         {
             /// <summary>Constructs a new Get request.</summary>
             public GetRequest(Google.Apis.Services.IClientService service)
@@ -1076,16 +1093,16 @@ namespace Localhost.Apis.Gallery.0_1
 
 
         /// <param name="body">The body of the request.</param>
-        public virtual CreateRequest Create(Localhost.Apis.Gallery.0_1.Data.TagCategory body)
+        public virtual CreateRequest Create(Localhost.Apis.Gallery.v0_1.Data.TagCategory body)
         {
             return new CreateRequest(service, body);
         }
 
 
-        public class CreateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class CreateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new Create request.</summary>
-            public CreateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.TagCategory body)
+            public CreateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.TagCategory body)
                 : base(service)
             {
                 Body = body;
@@ -1095,7 +1112,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.TagCategory Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.TagCategory Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -1194,7 +1211,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetAllIdsRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.ListOfString>
+        public class GetAllIdsRequest : GalleryBaseServiceRequest<List<Data.Tag>>
         {
             /// <summary>Constructs a new GetAllIds request.</summary>
             public GetAllIdsRequest(Google.Apis.Services.IClientService service)
@@ -1240,7 +1257,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.TagCategory>
+        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.TagCategory>
         {
             /// <summary>Constructs a new GetById request.</summary>
             public GetByIdRequest(Google.Apis.Services.IClientService service, string id)
@@ -1295,16 +1312,16 @@ namespace Localhost.Apis.Gallery.0_1
 
         /// <param name="body">The body of the request.</param>
         /// <param name="id">Path parameter: 'id'.</param>
-        public virtual UpdateRequest Update(Localhost.Apis.Gallery.0_1.Data.TagCategory body, string id)
+        public virtual UpdateRequest Update(Localhost.Apis.Gallery.v0_1.Data.TagCategory body, string id)
         {
             return new UpdateRequest(service, body, id);
         }
 
 
-        public class UpdateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class UpdateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new Update request.</summary>
-            public UpdateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.TagCategory body, string id)
+            public UpdateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.TagCategory body, string id)
                 : base(service)
             {
                 Id = id;
@@ -1319,7 +1336,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.TagCategory Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.TagCategory Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -1385,7 +1402,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class SearchRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.ListOfTag>
+        public class SearchRequest : GalleryBaseServiceRequest<List<Data.Tag>>
         {
             /// <summary>Constructs a new Search request.</summary>
             public SearchRequest(Google.Apis.Services.IClientService service, string query)
@@ -1457,7 +1474,7 @@ namespace Localhost.Apis.Gallery.0_1
 
         /// <param name="body">The body of the request.</param>
         /// <param name="uuid">Path parameter: 'uuid'.</param>
-        public virtual ChangePasswordRequest ChangePassword(Localhost.Apis.Gallery.0_1.Data.PasswordChangeRequest body, string uuid)
+        public virtual ChangePasswordRequest ChangePassword(Localhost.Apis.Gallery.v0_1.Data.PasswordChangeRequest body, string uuid)
         {
             return new ChangePasswordRequest(service, body, uuid);
         }
@@ -1466,7 +1483,7 @@ namespace Localhost.Apis.Gallery.0_1
         public class ChangePasswordRequest : GalleryBaseServiceRequest<string>
         {
             /// <summary>Constructs a new ChangePassword request.</summary>
-            public ChangePasswordRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.PasswordChangeRequest body, string uuid)
+            public ChangePasswordRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.PasswordChangeRequest body, string uuid)
                 : base(service)
             {
                 Uuid = uuid;
@@ -1481,7 +1498,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.PasswordChangeRequest Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.PasswordChangeRequest Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -1524,16 +1541,16 @@ namespace Localhost.Apis.Gallery.0_1
 
 
         /// <param name="body">The body of the request.</param>
-        public virtual CreateRequest Create(Localhost.Apis.Gallery.0_1.Data.User body)
+        public virtual CreateRequest Create(Localhost.Apis.Gallery.v0_1.Data.User body)
         {
             return new CreateRequest(service, body);
         }
 
 
-        public class CreateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class CreateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new Create request.</summary>
-            public CreateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.User body)
+            public CreateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.User body)
                 : base(service)
             {
                 Body = body;
@@ -1543,7 +1560,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.User Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.User Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
@@ -1643,7 +1660,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.User>
+        public class GetByIdRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.User>
         {
             /// <summary>Constructs a new GetById request.</summary>
             public GetByIdRequest(Google.Apis.Services.IClientService service, string uuid)
@@ -1702,7 +1719,7 @@ namespace Localhost.Apis.Gallery.0_1
         }
 
 
-        public class GetMeRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.User>
+        public class GetMeRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.User>
         {
             /// <summary>Constructs a new GetMe request.</summary>
             public GetMeRequest(Google.Apis.Services.IClientService service)
@@ -1743,16 +1760,16 @@ namespace Localhost.Apis.Gallery.0_1
 
         /// <param name="body">The body of the request.</param>
         /// <param name="uuid">Path parameter: 'uuid'.</param>
-        public virtual UpdateRequest Update(Localhost.Apis.Gallery.0_1.Data.User body, string uuid)
+        public virtual UpdateRequest Update(Localhost.Apis.Gallery.v0_1.Data.User body, string uuid)
         {
             return new UpdateRequest(service, body, uuid);
         }
 
 
-        public class UpdateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.0_1.Data.IdResponse>
+        public class UpdateRequest : GalleryBaseServiceRequest<Localhost.Apis.Gallery.v0_1.Data.IdResponse>
         {
             /// <summary>Constructs a new Update request.</summary>
-            public UpdateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.0_1.Data.User body, string uuid)
+            public UpdateRequest(Google.Apis.Services.IClientService service, Localhost.Apis.Gallery.v0_1.Data.User body, string uuid)
                 : base(service)
             {
                 Uuid = uuid;
@@ -1767,7 +1784,7 @@ namespace Localhost.Apis.Gallery.0_1
 
 
             /// <summary>Gets or sets the body of this request.</summary>
-            Localhost.Apis.Gallery.0_1.Data.User Body { get; set; }
+            Localhost.Apis.Gallery.v0_1.Data.User Body { get; set; }
 
             ///<summary>Returns the body of the request.</summary>
             protected override object GetBody() { return Body; }
